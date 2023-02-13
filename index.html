@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>METANIT.COM</title>
+</head>
+<body>
+    <div id="user"></div>
+    <div id="counter"></div>
+         
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      
+    function UserData() {
+      const [user, setUser] = React.useState({name:"Vadim", age: 18});
+       
+      function handleNameChange(event) { 
+        setUser({name: event.target.value, age: user.age});   
+     }
+       
+      function handleAgeChange(event) {   
+        setUser({name: user.name, age: event.target.value});   
+     }
+      return (
+        <div>
+          <h3>Имя: {user.name}</h3>
+          <h3>Возраст: {user.age}</h3>
+           
+          <div>
+            <p>Имя: <input type="text" value={user.name} onChange={handleNameChange} /></p>
+            <p>Возраст: <input type="number" min="0" max="110" value={user.age} onChange={handleAgeChange} /></p>
+
+            <input type="checkbox" id="scales1" name="scales"/>
+            <label for="scales">Поставьте галочку, прошу:3</label>
+
+            <br/>
+
+            <input type="checkbox" id="scales" name="scales"/>
+            <label for="scales1">Тут тоже^_^</label>
+
+            <hr/>
+          </div>
+        </div>
+      );
+    }
+
+    function Counter() {
+      const [count, setCount] = React.useState(0);
+      return (
+        <div>
+          <h3>Count = {count}</h3>
+
+          <button onClick={() => setCount(count + 1)}>
+            Жмакаем, чтобы больше было
+          </button>
+
+          <br/>
+          <br/>
+
+          <button onClick={() => setCount(count - 1)}>
+            Жмакаем, чтобы меньше было
+          </button>
+
+          <br/>
+          <br/>
+
+          <button onClick={() => setCount(0)}>
+            Жмакаем, чтобы обнулить стало
+          </button>
+        </div>
+      );
+    }
+            
+    ReactDOM.createRoot(
+        document.getElementById("user")
+    )
+    .render(
+        <UserData />
+    )
+
+    ReactDOM.createRoot(
+        document.getElementById("counter")
+    )
+    .render(
+        <Counter />
+    )
+    </script>
+</body>
